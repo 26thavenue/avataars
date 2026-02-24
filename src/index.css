@@ -1,2 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Geist+Mono&family=Rethink+Sans&family=Source+Sans+3&display=swap');
 @import "tailwindcss";
 
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #FFF8E1; /* cream */
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #0a0a0f;
+  color: #f0f0f8;
+  margin: 0;
+  font-family: 'Rethink Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── Fade-up animations ──────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up   { animation: fadeUp 0.7s ease both; }
+.fade-up-1 { animation: fadeUp 0.7s 0.1s ease both; }
+.fade-up-2 { animation: fadeUp 0.7s 0.2s ease both; }
+.fade-up-3 { animation: fadeUp 0.7s 0.3s ease both; }
+.fade-up-4 { animation: fadeUp 0.7s 0.4s ease both; }
+
+/* ── Pulsing dot ─────────────────────────────────────── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(1.5); }
+}
+
+.pulse { animation: pulse 2s infinite; }
+
+/* ── Avatar card hover ───────────────────────────────── */
+.av-card {
+  transition: transform 0.3s;
+}
+.av-card:hover {
+  transform: translateY(-7px) scale(1.09);
+}
