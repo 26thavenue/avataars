@@ -1,14 +1,14 @@
 import type { AvatarConfig } from "../lib/avatar";
 import { buildAvatarParts } from "./BuildAvatar";
 
-
 interface AvatarSvgProps {
   cfg: AvatarConfig;
   size?: number;
-  bg?: string;
+  /** Shown in the UI preview only — not included in the exportable SVG */
+  previewBg?: string;
 }
 
-export default function AvatarSvg({ cfg, size = 140, bg = "#111118" }: AvatarSvgProps) {
+export default function AvatarSvg({ cfg, size = 140, previewBg }: AvatarSvgProps) {
   const parts = buildAvatarParts(cfg);
 
   return (
@@ -18,7 +18,8 @@ export default function AvatarSvg({ cfg, size = 140, bg = "#111118" }: AvatarSvg
       width={size}
       height={size}
     >
-      <rect width="100" height="100" fill={bg} />
+      {/* Background rect only for UI preview — omitted on export */}
+      {previewBg && <rect width="100" height="100" fill={previewBg} />}
       {parts.body}
       {parts.limb}
       {parts.head}

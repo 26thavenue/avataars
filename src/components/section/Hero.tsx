@@ -1,6 +1,4 @@
 
-import { SAMPLE_CONFIGS } from "../../lib/data"
-import AvatarSvg from "../AvatarSVG";
 
 interface HeroProps {
   onOpenModal: () => void;
@@ -38,7 +36,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
           color: "#c8ff57",
         }}
       >
-        <span className="w-1.5 h-1.5 rounded-full pulse" style={{ background: "#c8ff57" }} />
+        <span className="w-1.5 h-1.5 rounded-full pulse mono-font" style={{ background: "#c8ff57" }} />
         Free to use · No signup needed
       </div>
 
@@ -48,8 +46,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
         style={{ fontSize: "clamp(56px, 9vw, 120px)", letterSpacing: "-3px" }}
       >
         Build your
-        <br />
-        <em className="not-italic text-[#c8ff57]">avatar.</em>
+        <em className="not-italic text-[#c8ff57] ml-3 ">avatar<span className="animate-pulse">.</span></em>
       </h1>
 
       {/* Subtext */}
@@ -62,23 +59,59 @@ export default function Hero({ onOpenModal }: HeroProps) {
       </p>
 
       {/* Sample avatars */}
-      <div className="fade-up-3 relative z-10 flex gap-4 mt-12 mb-10">
-        {SAMPLE_CONFIGS.map((cfg, i) => (
-          <div
-            key={i}
-            className="av-card rounded-full overflow-hidden border-2 border-[#1e1e2e] cursor-pointer hover:border-[#c8ff57]"
-            style={{ transition: "border-color .3s" }}
-          >
-            <AvatarSvg cfg={cfg} size={68} />
-          </div>
-        ))}
+      <div className="fade-up-3 relative z-10 flex gap-4 mt-8 mb-8">
+        
+        <svg viewBox="28 28 44 44"
+        xmlns="http://www.w3.org/2000/svg" 
+        width="50" height="50" className="bg-amber-500 rounded-md">
+          <rect x="32" y="32" width="36" height="36" rx="8" fill="#FFD6A5"></rect>
+          <path d="M39 47 Q43 43 47 47" stroke="#0D0D14" stroke-width="2" fill="none" stroke-linecap="round"></path>
+          <path d="M53 47 Q57 43 61 47" stroke="#0D0D14" stroke-width="2" fill="none" stroke-linecap="round">
+            </path><path d="M44 57 Q50 63 56 56" stroke="#0D0D14" stroke-width="2" fill="none" stroke-linecap="round">
+          </path></svg>
+        <svg viewBox="28 28 44 44"
+          xmlns="http://www.w3.org/2000/svg"
+          width="50"
+          height="50"
+          className="bg-sky-100 rounded-md"
+        >
+          <rect x="32" y="32" width="36" height="36" rx="8" fill="#0EA5E9" />
+          <path d="M39 47 Q43 43 47 47" stroke="#FFFFFF" strokeWidth="2" fill="none" strokeLinecap="round" />
+          <path d="M53 47 Q57 43 61 47" stroke="#FFFFFF" strokeWidth="2" fill="none" strokeLinecap="round" />
+          <path d="M44 57 Q50 63 56 56" stroke="#FFFFFF" strokeWidth="2" fill="none" strokeLinecap="round" />
+        </svg>
+       <svg viewBox="28 28 44 44"
+        xmlns="http://www.w3.org/2000/svg"
+        width="50"
+        height="50"
+        className="bg-emerald-100 rounded-md"
+      >
+        <rect x="32" y="32" width="36" height="36" rx="8" fill="#10B981" />
+        <path d="M39 47 Q43 43 47 47" stroke="#064E3B" strokeWidth="2" fill="none" strokeLinecap="round" />
+        <path d="M53 47 Q57 43 61 47" stroke="#064E3B" strokeWidth="2" fill="none" strokeLinecap="round" />
+        <path d="M44 57 Q50 63 56 56" stroke="#064E3B" strokeWidth="2" fill="none" strokeLinecap="round" />
+      </svg>
+     <svg viewBox="28 28 44 44"
+  xmlns="http://www.w3.org/2000/svg"
+  width="50"
+  height="50"
+  className="bg-indigo-900 rounded-md"
+>
+  <rect x="32" y="32" width="36" height="36" rx="8" fill="#A78BFA" />
+  <path d="M39 47 Q43 43 47 47" stroke="#1E1B4B" strokeWidth="2" fill="none" strokeLinecap="round" />
+  <path d="M53 47 Q57 43 61 47" stroke="#1E1B4B" strokeWidth="2" fill="none" strokeLinecap="round" />
+  <path d="M44 57 Q50 63 56 56" stroke="#1E1B4B" strokeWidth="2" fill="none" strokeLinecap="round" />
+</svg>
+    
+
+        
       </div>
 
       {/* CTA */}
       <button
         onClick={onOpenModal}
-        className="fade-up-4 relative z-10 inline-flex items-center gap-3 px-8 py-4 rounded-xl text-base font-bold text-[#0a0a0f] cursor-pointer"
-        style={{ background: "#c8ff57", fontFamily: "Syne, sans-serif", transition: "transform .2s, box-shadow .2s" }}
+        className="fade-up-4 relative z-10 mono-font inline-flex items-center gap-3 px-8 py-4 rounded-xl text-base font-bold text-[#0a0a0f] cursor-pointer"
+        style={{ background: "#c8ff57", transition: "transform .2s, box-shadow .2s" }}
         onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 16px 48px rgba(200,255,87,0.25)")}
         onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
       >

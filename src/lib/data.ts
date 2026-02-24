@@ -6,16 +6,23 @@ import type {
   MouthStyle,
   BodyStyle,
   LimbStyle,
-} from "./avatar"
+} from "./avatar";
+
+// re-export so consumers only need one import
+export type { AvatarConfig };
 
 export const DEFAULT_CONFIG: AvatarConfig = {
-  shape: "circle",
-  eye: "dot",
-  nose: "dot",
-  mouth: "smile",
-  body: "rect",
-  limb: "rounded",
-  color: "#7b6cff",
+  shape:      "circle",
+  eye:        "dot",
+  nose:       "dot",
+  mouth:      "smile",
+  body:       "rect",
+  limb:       "rounded",
+  bodyColor:  "#7b6cff",
+  eyeColor:   "#0D0D14",
+  noseColor:  "#0D0D14",
+  mouthColor: "#0D0D14",
+  headColor:  "#FFD6A5",
 };
 
 export const COLORS: string[] = [
@@ -29,38 +36,71 @@ export const COLORS: string[] = [
   "#06b6d4",
 ];
 
+export const HEAD_COLORS: string[] = [
+  "#FFD6A5",
+  ...COLORS,
+];
+
+// Colors available for face features (eyes / nose / mouth)
+export const FEATURE_COLORS: string[] = [
+  "#0D0D14",
+  "#7b6cff",
+  "#ff6b6b",
+  "#c8ff57",
+  "#00cec9",
+  "#fd79a8",
+  "#f97316",
+  "#ffffff",
+];
+
 export const OPTIONS: {
   shape: HeadShape[];
-  eye: EyeStyle[];
-  nose: NoseStyle[];
+  eye:   EyeStyle[];
+  nose:  NoseStyle[];
   mouth: MouthStyle[];
-  body: BodyStyle[];
-  limb: LimbStyle[];
+  body:  BodyStyle[];
+  limb:  LimbStyle[];
 } = {
-  shape: ["circle", "square", "hex"],
-  eye: ["dot", "star", "x", "sleepy"],
-  nose: ["dot", "bump", "none"],
-  mouth: ["smile", "flat", "smirk"],
-  body: ["rect", "triangle", "round"],
-  limb: ["stick", "rounded", "none"],
+  shape: ["circle", "square", "hex", "roundSquare", "star", "parallelogram", "triangle", "cloud"],
+  eye:   ["dot", "star", "x", "sleepy", "plus", "roundedStar", "dash", "asterisk", "dollars", "arrowUp", "arrowDown", "chevron"],
+  nose:  ["dot", "bump", "dash", "tri", "none"],
+  mouth: ["smile", "flat", "smirk", "none", "arrowUp", "arrowDown"],
+  body:  ["rect", "triangle", "round", "none"],
+  limb:  ["stick", "rounded", "none"],
 };
 
 export const LABELS: Record<string, Record<string, string>> = {
-  shape: { circle: "Circle", square: "Square", hex: "Hex" },
-  eye: { dot: "Dot", star: "Star", x: "× Cross", sleepy: "Sleepy" },
-  nose: { dot: "Dot", bump: "Bump", none: "None" },
-  mouth: { smile: "Smile", flat: "Flat", smirk: "Smirk" },
-  body: { rect: "Block", triangle: "Triangle", round: "Round" },
-  limb: { stick: "Stick", rounded: "Rounded", none: "None" },
+  shape: {
+    circle: "Circle",
+    square: "Square",
+    hex: "Hex",
+    roundSquare: "Round Square",
+    star: "Star",
+    parallelogram: "Parallelogram",
+    triangle: "Triangle",
+    cloud: "Cloud",
+  },
+  eye: {
+    dot: "Dot",
+    star: "Star",
+    x: "× Cross",
+    sleepy: "Sleepy",
+    plus: "+ Plus",
+    roundedStar: "Rounded Star",
+    dash: "Dash",
+    asterisk: "Asterisk",
+    dollars: "$ Dollar",
+    arrowUp: "Arrow Up",
+    arrowDown: "Arrow Down",
+    chevron: "Chevron",
+  },
+  nose: { dot: "Dot", bump: "Bump", dash: "Dash", tri: "Tri", none: "None" },
+  mouth: { smile: "Smile", flat: "Flat", smirk: "Smirk", none: "None", arrowUp: "Chevron Up", arrowDown: "Chevron Down" },
+  body:  { rect: "Block", triangle: "Triangle", round: "Round", none: "None" },
+  limb:  { stick: "Stick", rounded: "Rounded", none: "None" },
 };
 
-export const SAMPLE_CONFIGS: AvatarConfig[] = [
-  { shape: "circle", eye: "dot",    nose: "dot",  mouth: "smile", body: "rect",     limb: "rounded", color: "#7b6cff" },
-  { shape: "square", eye: "star",   nose: "none", mouth: "flat",  body: "rect",     limb: "stick",   color: "#ff6b6b" },
-  { shape: "circle", eye: "sleepy", nose: "bump", mouth: "smile", body: "round",    limb: "none",    color: "#00cec9" },
-  { shape: "hex",    eye: "x",      nose: "none", mouth: "smirk", body: "triangle", limb: "stick",   color: "#fd79a8" },
-  { shape: "square", eye: "dot",    nose: "dot",  mouth: "smile", body: "round",    limb: "rounded", color: "#c8ff57" },
-];
+
 
 export const HOW_TO_STEPS = [
   {

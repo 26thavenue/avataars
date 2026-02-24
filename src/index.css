@@ -18,6 +18,9 @@ body {
   font-family: 'Rethink Sans', sans-serif;
   overflow-x: hidden;
 }
+.mono-font{
+  font-family: 'Geist Mono', sans-serif;
+}
 
 /* ── Fade-up animations ──────────────────────────────── */
 @keyframes fadeUp {
