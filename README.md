@@ -23,3 +23,7 @@ TODO
 - Add round arms , work on different limbs 
 - Add beak for mouth , add sad state , inquistive 
 - Seperate limbs into hands and legs 
+- New modal 3 layered layout
+- feature request /feedback
+- Add semi circle , ghost for the shape 
+-

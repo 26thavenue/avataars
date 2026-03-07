@@ -20,11 +20,10 @@ export default function AvatarSvg({ cfg, size = 140, previewBg }: AvatarSvgProps
     >
       {/* Background rect only for UI preview — omitted on export */}
       {previewBg && <rect width="100" height="100" fill={previewBg} />}
-      {parts.body}
-      {parts.limb}
+      {parts.hands}
+      {parts.legs}
       {parts.head}
       {parts.eyes}
-      {parts.nose}
       {parts.mouth}
     </svg>
   );

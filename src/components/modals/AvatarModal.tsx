@@ -5,30 +5,26 @@ import AvatarSvg from "../AvatarSVG";
 import OptionButton from "../OptionButton";
 import ColorSwatch from "../ColorSwatch";
 
-
 interface AvatarModalProps {
   open: boolean;
   onClose: () => void;
 }
 
-// Which feature is currently targeted by the color picker
-type ColorTarget = "body" | "eye" | "nose" | "mouth" | "head";
+type ColorTarget = "limb" | "eye" | "mouth" | "head";
 
 const COLOR_TARGET_LABELS: Record<ColorTarget, string> = {
-  body:  "Body color",
-  eye:   "Eye color",
-  nose:  "Nose color",
+  limb: "Limb color",
+  eye: "Eye color",
   mouth: "Mouth color",
-  head:  "Head color",
+  head: "Head color",
 };
 
 export default function AvatarModal({ open, onClose }: AvatarModalProps) {
   const [cfg, setCfg] = useState<AvatarConfig>({ ...DEFAULT_CONFIG });
-  const [colorTarget, setColorTarget] = useState<ColorTarget>("body");
+  const [colorTarget, setColorTarget] = useState<ColorTarget>("limb");
   const [copied, setCopied] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
 
-  // Close on Escape
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -37,11 +33,10 @@ export default function AvatarModal({ open, onClose }: AvatarModalProps) {
     return () => window.removeEventListener("keydown", handleKey);
   }, [onClose]);
 
-  // Reset when modal opens
   useEffect(() => {
     if (open) {
       setCfg({ ...DEFAULT_CONFIG });
-      setColorTarget("body");
+      setColorTarget("limb");
     }
   }, [open]);
 
@@ -49,9 +44,8 @@ export default function AvatarModal({ open, onClose }: AvatarModalProps) {
     setCfg((prev) => ({ ...prev, [key]: value }));
   };
 
-  // Derive which color palette and setter to use based on active target
-  const activeColorPalette = colorTarget === "body" ? COLORS : colorTarget === "head" ? HEAD_COLORS : FEATURE_COLORS;
-  const activeColorKey = `${colorTarget}Color` as "bodyColor" | "eyeColor" | "noseColor" | "mouthColor" | "headColor";
+  const activeColorPalette = colorTarget === "limb" ? COLORS : colorTarget === "head" ? HEAD_COLORS : FEATURE_COLORS;
+  const activeColorKey = `${colorTarget}Color` as "limbColor" | "eyeColor" | "mouthColor" | "headColor";
   const activeColor = cfg[activeColorKey];
 
   const handleColorSelect = (color: string) => {
@@ -75,9 +69,7 @@ export default function AvatarModal({ open, onClose }: AvatarModalProps) {
   if (!open) return null;
 
   const controlGroups = Object.entries(OPTIONS) as [keyof typeof OPTIONS, string[]][];
-
-  // Tabs for which feature the color picker targets
-  const colorTabs: ColorTarget[] = ["body", "head", "eye", "nose", "mouth"];
+  const colorTabs: ColorTarget[] = ["limb", "head", "eye", "mouth"];
 
   return (
     <div
@@ -85,38 +77,25 @@ export default function AvatarModal({ open, onClose }: AvatarModalProps) {
       style={{ background: "rgba(0,0,0,0.85)", backdropFilter: "blur(12px)" }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div
-        className="relative w-full max-w-2xl rounded-3xl border border-[#1e1e2e] p-8 overflow-y-auto"
-        style={{ background: "#14141f", maxHeight: "90vh" }}
-      >
-        {/* Close */}
+      <div className="relative w-full max-w-3xl rounded-3xl border border-[#1e1e2e] p-8 overflow-y-auto" style={{ background: "#14141f", maxHeight: "90vh" }}>
         <button
           onClick={onClose}
           className="absolute top-5 right-5 w-9 h-9 rounded-lg bg-[#1e1e2e] text-[#6b6b80] hover:bg-[#c8ff57] hover:text-[#0a0a0f] transition-all flex items-center justify-center text-base cursor-pointer"
           aria-label="Close modal"
         >
-          ✕
+          x
         </button>
 
-        <h2 className="text-2xl font-extrabold tracking-tight mb-1">Build your avatar</h2>
-        <p className="text-sm text-[#6b6b80] mb-7">Mix and match to craft your character.</p>
-
         <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-8 items-start">
-          {/* Live preview — bg passed as prop so SVG itself stays clean */}
-          <div
-            ref={previewRef}
-            className="flex items-center justify-center aspect-square rounded-2xl border border-[#1e1e2e] bg-[#0a0a0f]"
-          >
+          <div ref={previewRef} className="flex items-center justify-center aspect-square rounded-2xl border border-[#1e1e2e] bg-[#0a0a0f]">
             <AvatarSvg cfg={cfg} size={150} previewBg="#0a0a0f" />
           </div>
 
-          {/* Controls */}
           <div className="flex flex-col gap-5">
-            {/* Trait selectors */}
             {controlGroups.map(([key, values]) => (
               <div key={key}>
                 <label className="block text-[10px] font-semibold tracking-widest uppercase text-[#6b6b80] mb-2.5">
-                  {key === "eye" ? "Eyes" : key === "limb" ? "Limbs" : key.charAt(0).toUpperCase() + key.slice(1)}
+                  {key === "eye" ? "Eyes" : key === "hand" ? "Hands" : key === "leg" ? "Legs" : key.charAt(0).toUpperCase() + key.slice(1)}
                 </label>
                 <div className="flex flex-wrap gap-2">
                   {values.map((val) => (
@@ -131,13 +110,9 @@ export default function AvatarModal({ open, onClose }: AvatarModalProps) {
               </div>
             ))}
 
-            {/* Color picker with feature tabs */}
             <div>
-              <label className="block text-[10px] font-semibold tracking-widest uppercase text-[#6b6b80] mb-2.5">
-                Colors
-              </label>
+              <label className="block text-[10px] font-semibold tracking-widest uppercase text-[#6b6b80] mb-2.5">Colors</label>
 
-              {/* Target tabs */}
               <div className="flex gap-1.5 mb-3 flex-wrap">
                 {colorTabs.map((tab) => {
                   const colorKey = `${tab}Color` as typeof activeColorKey;
@@ -153,33 +128,22 @@ export default function AvatarModal({ open, onClose }: AvatarModalProps) {
                           : "border-[#1e1e2e] text-[#6b6b80] bg-[#111118] hover:border-[#7b6cff] hover:text-white"
                       }`}
                     >
-                      {/* Mini swatch showing current color for that feature */}
-                      <span
-                        className="w-2.5 h-2.5 rounded-full border border-white/10 flex-shrink-0"
-                        style={{ background: currentColor }}
-                      />
+                      <span className="w-2.5 h-2.5 rounded-full border border-white/10 flex-shrink-0" style={{ background: currentColor }} />
                       {COLOR_TARGET_LABELS[tab]}
                     </button>
                   );
                 })}
               </div>
 
-              {/* Swatches for active target */}
               <div className="flex flex-wrap gap-2.5">
                 {activeColorPalette.map((c) => (
-                  <ColorSwatch
-                    key={c}
-                    color={c}
-                    active={activeColor === c}
-                    onClick={() => handleColorSelect(c)}
-                  />
+                  <ColorSwatch key={c} color={c} active={activeColor === c} onClick={() => handleColorSelect(c)} />
                 ))}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Action buttons */}
         <div className="flex gap-3 mt-7 pt-6 border-t border-[#1e1e2e]">
           <button
             onClick={handleCopy}

@@ -2,9 +2,7 @@ import type {
   AvatarConfig,
   HeadShape,
   EyeStyle,
-  NoseStyle,
   MouthStyle,
-  BodyStyle,
   LimbStyle,
 } from "./avatar";
 
@@ -14,13 +12,11 @@ export type { AvatarConfig };
 export const DEFAULT_CONFIG: AvatarConfig = {
   shape:      "circle",
   eye:        "dot",
-  nose:       "dot",
   mouth:      "smile",
-  body:       "rect",
-  limb:       "rounded",
-  bodyColor:  "#7b6cff",
+  hand:       "rounded",
+  leg:        "rounded",
+  limbColor:  "#7b6cff",
   eyeColor:   "#0D0D14",
-  noseColor:  "#0D0D14",
   mouthColor: "#0D0D14",
   headColor:  "#FFD6A5",
 };
@@ -41,7 +37,7 @@ export const HEAD_COLORS: string[] = [
   ...COLORS,
 ];
 
-// Colors available for face features (eyes / nose / mouth)
+// Colors available for face features (eyes / mouth)
 export const FEATURE_COLORS: string[] = [
   "#0D0D14",
   "#7b6cff",
@@ -56,17 +52,15 @@ export const FEATURE_COLORS: string[] = [
 export const OPTIONS: {
   shape: HeadShape[];
   eye:   EyeStyle[];
-  nose:  NoseStyle[];
   mouth: MouthStyle[];
-  body:  BodyStyle[];
-  limb:  LimbStyle[];
+  hand:  LimbStyle[];
+  leg:   LimbStyle[];
 } = {
   shape: ["circle", "square", "hex", "roundSquare", "star", "parallelogram", "triangle", "cloud"],
   eye:   ["dot", "star", "x", "sleepy", "plus", "roundedStar", "dash", "asterisk", "dollars", "arrowUp", "arrowDown", "chevron"],
-  nose:  ["dot", "bump", "dash", "tri", "none"],
   mouth: ["smile", "flat", "smirk", "none", "arrowUp", "arrowDown"],
-  body:  ["rect", "triangle", "round", "none"],
-  limb:  ["stick", "rounded", "none"],
+  hand:  ["stick", "rounded", "none"],
+  leg:   ["stick", "rounded", "none"],
 };
 
 export const LABELS: Record<string, Record<string, string>> = {
@@ -94,10 +88,9 @@ export const LABELS: Record<string, Record<string, string>> = {
     arrowDown: "Arrow Down",
     chevron: "Chevron",
   },
-  nose: { dot: "Dot", bump: "Bump", dash: "Dash", tri: "Tri", none: "None" },
   mouth: { smile: "Smile", flat: "Flat", smirk: "Smirk", none: "None", arrowUp: "Chevron Up", arrowDown: "Chevron Down" },
-  body:  { rect: "Block", triangle: "Triangle", round: "Round", none: "None" },
-  limb:  { stick: "Stick", rounded: "Rounded", none: "None" },
+  hand:  { stick: "Stick", rounded: "Rounded", none: "None" },
+  leg:   { stick: "Stick", rounded: "Rounded", none: "None" },
 };
 
 
@@ -115,15 +108,15 @@ export const HOW_TO_STEPS = [
     num: "02",
     icon: "◟◞",
     title: "Choose face features",
-    desc: "Mix dot, star, sleepy or cross eyes. Add a dot or bump nose — or skip it. Set your expression: smile, flat, or a cheeky smirk.",
+    desc: "Mix dot, star, sleepy or cross eyes. Set your expression: smile, flat, or a cheeky smirk.",
     accentFrom: "#c8ff57",
     accentTo: "#00cec9",
   },
   {
     num: "03",
     icon: "⟁",
-    title: "Style body & limbs",
-    desc: "Pick a body — blocky, triangular or round. Add stick arms and legs, chunky rounded limbs, or go limbless for a minimal look.",
+    title: "Style hands & legs",
+    desc: "Choose hand and leg style independently. Use stick for a light look, rounded for bold shapes, or none for minimalist avatars.",
     accentFrom: "#ff6b6b",
     accentTo: "#fd79a8",
   },
