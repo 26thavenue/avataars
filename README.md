@@ -7,7 +7,6 @@ TODO
 - Add Docs 
 - Turn into an npm package 
 - Add space for custom shapes 
-- Add roundness or straightness 
 - Animating Avatar 
 - Add a color picker for everyhing 
 - Add dark mode, system and light mode 
