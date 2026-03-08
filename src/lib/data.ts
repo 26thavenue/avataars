@@ -56,7 +56,7 @@ export const OPTIONS: {
   hand:  LimbStyle[];
   leg:   LimbStyle[];
 } = {
-  shape: ["circle", "square", "hex", "roundSquare", "star", "parallelogram", "triangle", "cloud"],
+  shape: ["circle", "square", "hex", "roundSquare", "bigRoundSquare", "toast"],
   eye:   ["dot", "star", "x", "sleepy", "plus", "roundedStar", "dash", "asterisk", "dollars", "arrowUp", "arrowDown", "chevron"],
   mouth: ["smile", "flat", "smirk", "none", "arrowUp", "arrowDown"],
   hand:  ["stick", "rounded", "none"],
@@ -69,10 +69,8 @@ export const LABELS: Record<string, Record<string, string>> = {
     square: "Square",
     hex: "Hex",
     roundSquare: "Round Square",
-    star: "Star",
-    parallelogram: "Parallelogram",
-    triangle: "Triangle",
-    cloud: "Cloud",
+    bigRoundSquare: "Big Round Square",
+    toast: "Toast",
   },
   eye: {
     dot: "Dot",

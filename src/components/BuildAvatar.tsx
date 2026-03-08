@@ -16,6 +16,7 @@ export function buildAvatarParts(cfg: AvatarConfig) {
     circle: <circle cx={cx} cy={cy} r={r} fill={HEAD_FILL} />,
     square: <rect x={cx - r} y={cy - r} width={r * 2} height={r * 2} rx="6" ry="6" fill={HEAD_FILL} />,
     roundSquare: <rect x={cx - r} y={cy - r} width={r * 2} height={r * 2} rx="14" ry="14" fill={HEAD_FILL} />,
+    bigRoundSquare: <rect x={cx - (r + 4)} y={cy - (r + 4)} width={(r + 4) * 2} height={(r + 4) * 2} rx="20" ry="20" fill={HEAD_FILL} />,
     hex: (() => {
       const h = r * 0.866;
       const pts = [
@@ -28,70 +29,23 @@ export function buildAvatarParts(cfg: AvatarConfig) {
       ].join(" ");
       return <polygon points={pts} fill={HEAD_FILL} />;
     })(),
-    star: (() => {
-      const ro = r;
-      const ri = r * 0.5;
-      const pts: string[] = [];
-      for (let i = 0; i < 8; i++) {
-        const outerAngle = (i * Math.PI * 2) / 8 - Math.PI / 2;
-        const innerAngle = outerAngle + Math.PI / 8;
-        pts.push(`${cx + ro * Math.cos(outerAngle)},${cy + ro * Math.sin(outerAngle)}`);
-        pts.push(`${cx + ri * Math.cos(innerAngle)},${cy + ri * Math.sin(innerAngle)}`);
-      }
-      return <polygon points={pts.join(" ")} fill={HEAD_FILL} />;
-    })(),
-    parallelogram: (() => {
-      const skew = 8;
-      const top = cy - r;
-      const bot = cy + r;
-      const lft = cx - r;
-      const rgt = cx + r;
-      const pts = [`${lft + skew},${top}`, `${rgt + skew},${top}`, `${rgt - skew},${bot}`, `${lft - skew},${bot}`].join(" ");
-      return <polygon points={pts} fill={HEAD_FILL} />;
-    })(),
-    triangle: (() => {
-      const rad = 5;
-      const ax = cx;
-      const ay = cy - r;
-      const lx = cx - r;
-      const ly = cy + r;
-      const rx2 = cx + r;
-      const ry2 = cy + r;
-      return (
-        <path
-          d={`
-            M ${ax} ${ay + rad}
-            Q ${ax} ${ay} ${ax + rad} ${ay + rad * 0.6}
-            L ${rx2 - rad * 1.5} ${ry2 - rad}
-            Q ${rx2} ${ry2} ${rx2 - rad} ${ry2}
-            L ${lx + rad} ${ly}
-            Q ${lx} ${ly} ${lx + rad * 1.5} ${ly - rad}
-            L ${ax - rad} ${ay + rad * 0.6}
-            Q ${ax} ${ay} ${ax} ${ay + rad}
-            Z
-          `}
-          fill={HEAD_FILL}
-        />
-      );
-    })(),
-    cloud: (() => {
-      const by = cy;
-      return (
-        <path
-          d={`
-            M ${cx - 23} ${by + 10}
-            Q ${cx - 26} ${by - 2}  ${cx - 18} ${by - 8}
-            Q ${cx - 12} ${by - 22} ${cx}      ${by - 20}
-            Q ${cx + 12} ${by - 22} ${cx + 18} ${by - 8}
-            Q ${cx + 26} ${by - 2}  ${cx + 23} ${by + 10}
-            Q ${cx + 20} ${by + 18} ${cx}      ${by + 18}
-            Q ${cx - 20} ${by + 18} ${cx - 23} ${by + 10}
-            Z
-          `}
-          fill={HEAD_FILL}
-        />
-      );
-    })(),
+    toast: (
+      <path
+        d={`
+          M ${cx - 18} ${cy + 18}
+          Q ${cx - 23} ${cy + 18} ${cx - 23} ${cy + 13}
+          L ${cx - 23} ${cy - 3}
+          Q ${cx - 23} ${cy - 17} ${cx - 11} ${cy - 17}
+          Q ${cx - 4} ${cy - 28} ${cx} ${cy - 17}
+          Q ${cx + 4} ${cy - 28} ${cx + 11} ${cy - 17}
+          Q ${cx + 23} ${cy - 17} ${cx + 23} ${cy - 3}
+          L ${cx + 23} ${cy + 13}
+          Q ${cx + 23} ${cy + 18} ${cx + 18} ${cy + 18}
+          Z
+        `}
+        fill={HEAD_FILL}
+      />
+    ),
   };
 
   const eyeY = cy - 5;

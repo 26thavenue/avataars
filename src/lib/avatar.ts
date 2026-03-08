@@ -1,4 +1,4 @@
-export type HeadShape  = "circle" | "square" | "hex" | "roundSquare" | "star" | "parallelogram" | "triangle" | "cloud";
+export type HeadShape  = "circle" | "square" | "hex" | "roundSquare" | "bigRoundSquare" | "toast";
 export type EyeStyle   = "dot" | "star" | "x" | "sleepy" | "plus" | "roundedStar" | "dash" | "asterisk" | "dollars" | "arrowUp" | "arrowDown" | "chevron";
 export type MouthStyle = "smile" | "flat" | "smirk" | "none" | "arrowUp" | "arrowDown";
 export type LimbStyle  = "stick" | "rounded" | "none";

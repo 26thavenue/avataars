@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="28 28 44 44" width="256" height="256" role="img" aria-label="Avataars icon">
+  <title>Avataars Icon</title>
+  <rect x="28" y="28" width="44" height="44" rx="6" fill="#312E81" />
+  <rect x="32" y="32" width="36" height="36" rx="8" fill="#A78BFA" />
+  <path d="M39 47 Q43 43 47 47" stroke="#1E1B4B" stroke-width="2" fill="none" stroke-linecap="round" />
+  <path d="M53 47 Q57 43 61 47" stroke="#1E1B4B" stroke-width="2" fill="none" stroke-linecap="round" />
+  <path d="M44 57 Q50 63 56 56" stroke="#1E1B4B" stroke-width="2" fill="none" stroke-linecap="round" />
+</svg>
